@@ -32,7 +32,7 @@ source ~/venvs/jlab/bin/activate
 # Install dependencies
 pip install --upgrade pip
 pip install ipykernel torch torchvision torchaudio datasets transformers accelerate tqdm pandas pydicom pillow scikit-learn seaborn matplotlib
-
+```
 **Hugging Face Environment Configuration:**
 Set your Hugging Face home and cache environments to your specific paths:
 
@@ -42,6 +42,7 @@ export TRANSFORMERS_CACHE=$HF_HOME/transformers
 export HF_HUB_ENABLE_HF_TRANSFER=0
 
 hf download microsoft/Florence-2-base-ft --revision refs/pr/6 --local-dir $SCRATCH/hf/models/florence2
+```
 
 ### 2. Local Environment Setup
 
@@ -61,6 +62,7 @@ num_machines: 1
 num_processes: 2
 rdzv_backend: static
 same_network: true
+```
 
 ## 📂 Project Pipeline & SLURM Orchestration
 
@@ -76,6 +78,7 @@ The vision-language models (e.g., Florence-2) are fine-tuned using `accelerate` 
 
 * **Resources:** The training script requests 2 GPUs per node, 8 CPUs per task, and an increased memory limit of 64G for full parameter tuning. The maximum time allocation is set to 10 hours (`10:00:00`).
 * **Execution:**
+* 
 ```bash
 export HF_HOME=$PWD/hf_cache
 export NCCL_IB_TIMEOUT=22
@@ -84,6 +87,7 @@ export TORCH_NCCL_BLOCKING_WAIT=1
 export TORCH_DISTRIBUTED_DEBUG=DETAIL
 
 accelerate launch --config_file accelerate_config.yaml train_vlm.py
+```
 
 ### Stage 3: Inference & Evaluation Workloads
 The framework separates workloads based on processing needs, handled via distinct SLURM scripts:
