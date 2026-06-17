@@ -1,4 +1,4 @@
-# FZ-VLM: Florence-Zephyr Vision-Language Model Framework
+# FZ-VLM: Florence-Zephyr Vision Language Model Framework
 
 A Two-Stage Florence-Zephyr Vision-Language Model (FZ-VLM) Framework for Pulmonary Nodule Characterization and Clinical Decision Making from Lung CT in a Post-Detection Framework.
 
